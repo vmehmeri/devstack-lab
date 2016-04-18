@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install git make autoconf libtool 
+cd ~
 git clone -b stable/liberty https://github.com/openstack-dev/devstack 
 git clone https://github.com/trozet/sfc-random.git 
 git clone https://github.com/pritesh/ovs --branch nsh-v8
@@ -23,7 +24,7 @@ cd ~
 # copy sample configuration file
 
 cp -f sfc-random/local.conf devstack/
-cd devstack
+rm -rf ovs-lab
 
 ## modify host IP address in local.conf file (there are 3 occurrences):
 
@@ -32,3 +33,6 @@ cd devstack
 # Sym-Link NSH OVS:
 
 sudo ln -s /usr/local/bin/* /bin/
+
+echo "Installation Complete."
+echo "Update devstack/local.conf IP addresses"
